@@ -37,7 +37,7 @@ server.get '/js', (rq, rs, nx) ->
 
 server.get '/css', (rq, rs, nx) ->
 	rs.writeHead 200, {"Content-Type": "text/css"}
-	file = fs.createReadStream resolve 'admin', 'style.css'
+	file = fs.createReadStream resolve 'admin', 'styles.css'
 	file.pipe rs
 
 # Adapter setup here

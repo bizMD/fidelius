@@ -1,8 +1,17 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Done!</title>
+		<title>Fidelius</title>
 		<!--<link rel="stylesheet" href="/css">-->
+		<style>
+			.placeholder {
+				display: none;
+			}
+
+			.actions.available {
+				display: none;
+			}
+		</style>
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
 			var socket = io();
@@ -17,6 +26,7 @@
 		</section>
 		<section class="add filter">
 			<h2>Add Filter</h2>
+			<div>Remember: if your result is nested, use dot notation</div>
 			<form id="addFilter">
 				<input name="filter" class="filterName" type="text"/>
 				<div class="filter items list">
@@ -32,8 +42,14 @@
 		<section class="add query">
 			<h2>Add Query</h2>
 			<form id="addQuery">
-				<div class="query item"></div>
-				<button id="query">Query</button>
+				<div class="query item">
+					<select class="wsdls available">
+						<option class="placeholder" selected disabled>Choose a WSDL</option>
+					</select>
+					<select class="actions available"></select>
+					<div class="wsdl input items"></div>
+				</div>
+				<button type="button" id="query">Query</button>
 			</form>
 		</section>
 		<script src="/js"></script>
