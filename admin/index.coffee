@@ -4,6 +4,7 @@ oboe = require 'oboe'
 loki = require 'lokijs'
 db = new loki
 wsdls = db.addCollection 'wsdls'
+filters = db.addCollection 'filters'
 
 `
 Array.prototype.associate = function (keys) {
@@ -40,7 +41,14 @@ $ ->
 
 		filterName = $('.filterName').val()
 		$.post "http://localhost:7777/resource/1/dataView/#{filterName}", data, (response) ->
+			socket.emit 'subscribe to filter', filterName
 			console.log response
+
+	socket.on 'new data delivery', (data) ->
+		console.log data
+
+	socket.on 'new data delivery error', (data) ->
+		console.log data
 
 	addOption = (target, value, options) ->
 		$ '<option>'

@@ -1,7 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 
 },{}],2:[function(require,module,exports){
-var $, db, loki, oboe, wsdls;
+var $, db, filters, loki, oboe, wsdls;
 
 require('sugar');
 
@@ -14,6 +14,8 @@ loki = require('lokijs');
 db = new loki;
 
 wsdls = db.addCollection('wsdls');
+
+filters = db.addCollection('filters');
 
 
 Array.prototype.associate = function (keys) {
@@ -56,8 +58,15 @@ $(function() {
     console.log(data);
     filterName = $('.filterName').val();
     return $.post("http://localhost:7777/resource/1/dataView/" + filterName, data, function(response) {
+      socket.emit('subscribe to filter', filterName);
       return console.log(response);
     });
+  });
+  socket.on('new data delivery', function(data) {
+    return console.log(data);
+  });
+  socket.on('new data delivery error', function(data) {
+    return console.log(data);
   });
   addOption = function(target, value, options) {
     return $('<option>').attr(options).val(value).html(value).appendTo($(target));
