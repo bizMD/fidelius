@@ -10,6 +10,7 @@ require 'sugar'
 $ = require 'jquery'
 oboe = require 'oboe'
 loki = require 'lokijs'
+dotize = require 'dotize'
 socket = (require 'socket.io-client') url
 
 db = new loki
@@ -36,6 +37,7 @@ addOption = (target, value, options) ->
 	.appendTo $ target
 
 mapObj2Form = (target, data) ->
+	$(target).empty()
 	for item in data
 		if item.toLowerCase() not in blacklist
 			div = $ '<div>'
@@ -51,6 +53,25 @@ mapObj2Form = (target, data) ->
 			.appendTo div
 
 			div.appendTo $ target
+
+mapObj2Table = (target, data) ->
+	$(target).empty()
+	for own item of data
+		div = $ '<div>'
+
+		$ '<strong>'
+		.html "#{item}"
+		.appendTo div
+
+		$ '<strong>'
+		.html ' || '
+		.appendTo div
+
+		$ '<i>'
+		.html "#{data[item]}"
+		.appendTo div
+
+		div.appendTo $ target
 
 $ ->
 	$('input[name="wsdl"]').on 'change', ->
@@ -102,15 +123,14 @@ $ ->
 			action: $(this).val()
 			wsdl: $('.wsdls.available').find(':selected').val()
 		
-		console.log selected.first().io.output
-		#$('.wsdl.output.result').html JSON.stringify selected.first().io.output
-		#$('.wsdl.output.footer').slideDown()
+		console.log dotize.convert selected.first().io.output
+		mapObj2Table '.wsdl.output.result', dotize.convert selected.first().io.output
+		$('.wsdl.output.footer').slideDown()
 
 		selected
 		.map ({io: {input}}) ->
 			Object.keys input
 		.each (data) ->
-			$('.wsdl.input.items').empty()
 			mapObj2Form '.wsdl.input.items', data
 
 	$('#query').on 'click', ->
