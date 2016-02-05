@@ -11,11 +11,11 @@
 			.actions.available {
 				display: none;
 			}
+
+			.wsdl.output.footer {
+				display: none;
+			}
 		</style>
-		<script src="/socket.io/socket.io.js"></script>
-		<script>
-			var socket = io('http://localhost:7777');
-		</script>
 	</head>
 	<body>
 		<section class="upload wsdl">
@@ -51,6 +51,11 @@
 				</div>
 				<button type="button" id="query">Query</button>
 			</form>
+			<!-- This part would show the output, formatted -->
+			<div class="wsdl output footer">
+				<div>Web Service Output Format</div>
+				<div class="wsdl output result"></div>
+			</div>
 		</section>
 		<script src="/js"></script>
 	</body>
