@@ -53,5 +53,5 @@ server.on 'after', (req, res, route, error) ->
 # Run the server under an active domain
 d.run ->
 	# Log when the web server starts up
-	server.listen 8000, -> console.log "#{server.name}[#{process.pid}] online: #{server.url}"
+	server.listen 8001, -> console.log "#{server.name}[#{process.pid}] online: #{server.url}"
 	console.log "#{server.name} is starting..."
