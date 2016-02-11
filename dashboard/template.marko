@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Fidelius</title>
+		<style>
+			.placeholder {
+				display: none;
+			}
+			.hidden {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Fill this out top to bottom or else it doesnt work!</h1>
+		<section>
+			<form id="dashboard">
+				<h2>Name</h2>
+				<div>Name: <input id="dname"/></div>
+				<h2>Title</h2>
+				<div>Title: <input id="title"/></div>
+				<h2>Layout</h2>
+				<div>
+					<div>Name:
+						<select id="lname" name="lname">
+							<option value="false" class="placeholder" selected disabled>Please select</option>
+						</select>
+					</div>
+					<div class="hidden versionDiv">Version:
+						<select id="version" name="version">
+							<option value="false" class="placeholder" selected disabled>Please select</option>
+						</select>
+					</div>
+				</div>
+				<h2>Widgets</h2>
+				<div class="widgets world object list">
+					<div class="widgets world object">
+						<div>Format:
+							<select class="format" name="format[]">
+								<option value="false" class="placeholder" selected disabled>Please select</option>
+							</select>
+						</div>
+						<div class="hidden wnameDiv">Name:
+							<select class="wname" name="wname[]">
+								<option value="false" class="placeholder" selected disabled>Please select</option>
+							</select>
+						</div>
+						<div class="hidden slotDiv">Slot:
+							<select class="slot" name="slot[]">
+								<option value="false" class="placeholder" selected disabled>Please select</option>
+							</select>
+						</div>
+						<div class="hidden dataDiv">Data:
+							<select class="data" name="data[]">
+								<option value="false" class="placeholder" selected disabled>Please select</option>
+							</select>
+						</div>
+						<div class="hidden optionsDiv">
+							Options: <button class="add option" type="button">+</button>
+							<div class="widget options list">
+								<!--
+								<div class="widget options">
+									<input name="key[]"/>
+									<input name="value[]"/>
+									<button class="add more" type="button">+</button>
+								</div>
+								-->
+							</div>
+						</div>
+						<button class="add widget" type="button">Add Widget</button>
+						<hr/>
+					</div>
+				</div>
+				<button id="button" type="button">Submit</button>
+			</form>
+		</section>
+		<script src="/dashboards/js"></script>
+	</body>
+</html>

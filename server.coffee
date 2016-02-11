@@ -40,6 +40,40 @@ server.get '/css', (rq, rs, nx) ->
 	file = fs.createReadStream resolve 'admin', 'styles.css'
 	file.pipe rs
 
+# Serve widgets
+server.get '/dashboards', (rq, rs, nx) ->
+	rs.writeHead 200, {"Content-Type": "text/html"}
+	template = resolve 'dashboard', 'template.marko'
+	view  = require template
+	view.render {}, rs
+
+server.get '/dashboards/js', (rq, rs, nx) ->
+	rs.writeHead 200, {"Content-Type": "application/javascript"}
+	file = fs.createReadStream resolve 'dashboard', 'index.js'
+	file.pipe rs
+
+server.get '/dashboards/css', (rq, rs, nx) ->
+	rs.writeHead 200, {"Content-Type": "text/css"}
+	file = fs.createReadStream resolve 'dashboard', 'styles.css'
+	file.pipe rs
+
+# Serve widgets
+server.get '/cockpit', (rq, rs, nx) ->
+	rs.writeHead 200, {"Content-Type": "text/html"}
+	template = resolve 'cockpit', 'template.marko'
+	view  = require template
+	view.render {}, rs
+
+server.get '/cockpit/js', (rq, rs, nx) ->
+	rs.writeHead 200, {"Content-Type": "application/javascript"}
+	file = fs.createReadStream resolve 'cockpit', 'index.js'
+	file.pipe rs
+
+server.get '/cockpit/css', (rq, rs, nx) ->
+	rs.writeHead 200, {"Content-Type": "text/css"}
+	file = fs.createReadStream resolve 'cockpit', 'styles.css'
+	file.pipe rs
+
 # Adapter setup here
 # Placeholder
 # Placeholder
