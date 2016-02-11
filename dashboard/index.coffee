@@ -115,7 +115,7 @@ $ ->
 			widgetObj.name = $(widget).find('.wname').find(':selected').val()
 			widgetObj.format = $(widget).find('.format').find(':selected').val()
 			widgetObj.target = $(widget).find('.slot').find(':selected').val()
-			widgetObj.data = $(widget).find('.data').find(':selected').val() if $(widget).find('.data').find(':selected').val() == 'false'
+			widgetObj.data = $(widget).find('.data').find(':selected').val() if not $(widget).find('.data').find(':selected').val() == 'false'
 			
 			$(widget).find('.widget.options.list').children().each (index2, option) ->
 				widgetObj.options ?= []

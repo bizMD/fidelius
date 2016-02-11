@@ -181,7 +181,7 @@ $(function() {
       widgetObj.name = $(widget).find('.wname').find(':selected').val();
       widgetObj.format = $(widget).find('.format').find(':selected').val();
       widgetObj.target = $(widget).find('.slot').find(':selected').val();
-      if ($(widget).find('.data').find(':selected').val() === 'false') {
+      if (!$(widget).find('.data').find(':selected').val() === 'false') {
         widgetObj.data = $(widget).find('.data').find(':selected').val();
       }
       $(widget).find('.widget.options.list').children().each(function(index2, option) {
